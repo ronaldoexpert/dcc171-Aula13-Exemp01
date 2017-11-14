@@ -13,6 +13,7 @@ public class Dcc171Aula13Exem01 {
         String driverUrl = "jdbc:derby://localhost:1527/Teste";
         try {
             Connection conexao = DriverManager.getConnection(driverUrl, "usuario", "senha");
+            //teste de alteração
         } catch (SQLException ex) {
             Logger.getLogger(Dcc171Aula13Exem01.class.getName()).log(Level.SEVERE, null, ex);
         }
