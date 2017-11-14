@@ -14,6 +14,8 @@ public class Dcc171Aula13Exem01 {
         try {
             Connection conexao = DriverManager.getConnection(driverUrl, "usuario", "senha");
             //teste de alteração
+            
+            //Teste alteração Lucas
         } catch (SQLException ex) {
             Logger.getLogger(Dcc171Aula13Exem01.class.getName()).log(Level.SEVERE, null, ex);
         }
