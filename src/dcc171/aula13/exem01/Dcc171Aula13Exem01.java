@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Dcc171Aula13Exem01 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         
         String driverUrl = "jdbc:derby://localhost:1527/Teste";
         try {
@@ -18,23 +18,26 @@ public class Dcc171Aula13Exem01 {
             //teste de alteração
             PreparedStatement operacaoInsere = conexao.prepareCall("insert into PRODUTO (nome, qtd, atualizado)"
                     + " values(?,?, current_timestamp)");
+            
+            Produto p2 = new Produto();
+            p2.setNome("Produto A");
+            p2.setQtd(22);
             operacaoInsere.clearParameters();
-            operacaoInsere.setString(1, "Bala55");
-            operacaoInsere.setInt(2, 102);
+            operacaoInsere.setString(1, p2.getNome());
+            operacaoInsere.setInt(2, p2.getQtd());
             operacaoInsere.executeUpdate();
             
             PreparedStatement operacaoListar = conexao.prepareCall(""
                     + "Select nome, qtd from produto where qtd > ?");
             operacaoListar.clearParameters();
-            operacaoListar.setInt(1, 100);
+            operacaoListar.setInt(1, 0);
             ResultSet resultado = operacaoListar.executeQuery();
             
             while (resultado.next()) {
-                System.out.println(
-                        resultado.getString(1) + 
-                        "\t\t" + 
-                        resultado.getInt(2)
-                        );                
+                Produto p = new Produto();
+                p.setNome(resultado.getString(1));
+                p.setQtd(resultado.getInt(2));
+                System.out.println(p.getNome() + "\t\t" + p.getQtd());
             }
             
                 
